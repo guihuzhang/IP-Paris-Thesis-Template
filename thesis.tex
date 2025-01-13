@@ -1,0 +1,135 @@
+% created on 2025-01-12
+% @author : Efimov-Zhang Kun (based on the template of bmazoyer and riverarodrigoa)
+% This is a non-official template for IP Paris thesis. The template is a combination of Paris-Saclay template and IP Paris front and end pages. 
+
+\documentclass[a4paper, twoside]{report}
+% \documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[default, scale=.95]{opensans}
+\usepackage{geometry}
+\geometry{
+left=16mm,
+top=30mm,
+right=16mm,
+bottom=30mm
+}
+\usepackage[table,RGB]{xcolor}
+\definecolor{bordeau}{rgb}{0.3515625,0,0.234375}
+\definecolor{Prune}{RGB}{99,0,60}
+\definecolor{B1}{RGB}{49,62,72} 
+\definecolor{C1}{RGB}{124,135,143}
+\definecolor{D1}{RGB}{213,218,223}
+\definecolor{A2}{RGB}{198,11,70}
+\definecolor{B2}{RGB}{237,20,91}
+\definecolor{C2}{RGB}{238,52,35}
+\definecolor{D2}{RGB}{243,115,32}
+\definecolor{A3}{RGB}{124,42,144}
+\definecolor{B3}{RGB}{125,106,175}
+\definecolor{C3}{RGB}{198,103,29}
+\definecolor{D3}{RGB}{254,188,24}
+\definecolor{A4}{RGB}{0,78,125}
+\definecolor{B4}{RGB}{14,135,201}
+\definecolor{C4}{RGB}{0,148,181}
+\definecolor{D4}{RGB}{70,195,210}
+\definecolor{A5}{RGB}{0,128,122}
+\definecolor{B5}{RGB}{64,183,105}
+\definecolor{C5}{RGB}{140,198,62}
+\definecolor{D5}{RGB}{213,223,61}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{afterpage}
+\usepackage{setspace}
+\usepackage{pgffor}
+\usepackage{pdfpages}
+\usepackage{float}
+\usepackage{upgreek}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{amsthm}
+\usepackage{subfig}
+\usepackage{rotating}
+\usepackage{amsmath}
+
+\setlength{\columnseprule}{0pt}
+\setlength\columnsep{10pt}
+\usepackage[french]{babel}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+%Bibliography style
+\usepackage[round]{natbib}
+\bibliographystyle{abbrvnat}
+
+% Thesis title
+% \newcommand{\PhDTitle}{TITLE} 
+
+% \newcommand{\PhDTitleTrad}{Title (French)}
+
+% % Name
+% \newcommand{\PhDname}{Name LastName} 
+
+\newcommand{\PhDTitle}{Titre de la thèse (sur plusieurs lignes si nécessaire, 4 voire 5)} 	%% Titre de la thèse / Thesis title
+\newcommand{\PhDname}{Prénom Nom} 															%% Civilité, nom et prénom /  Civility, first name and name 
+
+% Change this variable if you add or remove chapters
+\newcommand*{\NumOfChapters}{5}
+
+% Change this variable if you add or remove appendices
+\newcommand*{\NumOfAppendices}{2}
+
+% PDF metadata
+\hypersetup{
+	pdfauthor={\PhDname},
+	pdfsubject={Manuscrit de thèse de doctorat},
+	pdftitle={\PhDTitle}
+}
+
+
+\begin{document}
+	\singlespacing
+    \input{layout/firstpage-ipp.tex}
+    
+    \normalsize
+    \doublespacing
+    \input{layout/dedication.tex}
+    \cleardoublepage
+    \input{layout/acknowledgements.tex}
+    \cleardoublepage
+    \pagenumbering{arabic}
+    \setcounter{tocdepth}{4}
+    \setcounter{secnumdepth}{4}
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    
+
+    \foreach \i in {1,2,...,\NumOfChapters}{
+        \input{\i}
+        \cleardoublepage
+    }
+    
+    \appendix
+    \foreach \i in {1,2,...,\NumOfAppendices}{
+        \input{appendices/\i}
+        \cleardoublepage
+    }
+    
+    \bibliography{bibliography.bib}
+    \pagebreak
+    
+    \singlespacing
+    \input{layout/lastpage-ipp.tex}
+\end{document}
